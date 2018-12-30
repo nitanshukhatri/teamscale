@@ -1,0 +1,8 @@
+.left-panel{
+    overflow-y: scroll;
+    height: 600px;
+}
+
+agm-map{
+    height: 300px
+}
