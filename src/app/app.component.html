@@ -1,4 +1,5 @@
 
+<input type="text" placeholder="search..." (input)="onSearch($event)">
 <div class="row">
 <div class="col-md-6 text-center">
 <div class="left-panel">
@@ -29,6 +30,7 @@
     </agm-info-window>
     
   </agm-marker>
+  <agm-circle [latitude]="lat"[longitude]="lng" [editable] ="true" [circleDraggable]="true" [radius]="5000" (radiusChange)="radiusChanged($event)"></agm-circle>
   </agm-map>
 </div>
 </div>
