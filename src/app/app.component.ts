@@ -15,7 +15,8 @@ export class AppComponent implements OnInit {
   lng = -0.12775829999998223;
   zoom = 12;
   markers = [];
-  markerImg = 'http://team-scale.com/TestData/ng_text_v15/blue_marker.png';
+  markerblueImg = 'http://team-scale.com/TestData/ng_text_v15/blue_marker.png';
+  markerOrangeImg = 'http://team-scale.com/TestData/ng_text_v15/orange_marker.png'
   openedWindow = 0;
 
   constructor(private meetingService: MeetikzService) {
@@ -30,23 +31,25 @@ export class AppComponent implements OnInit {
       this.mapTheMarkers(this.allMeetings);
     });
   }
-  radiusChanged(number) {
-    console.log(number);
+  radiusChanged(radius) {
+    console.log(radius);
+    // this.mapsAPILoader.load().then(() => {
+    // });
   }
 
   locateOnMap(meeting, index) {
     console.log(meeting);
     this.markers.forEach(elm => {
-      elm.url = this.markerImg;
+      elm.url = this.markerblueImg;
     });
-    this.markers[index].url = 'http://team-scale.com/TestData/ng_text_v15/orange_marker.png';
+    this.markers[index].url = this.markerOrangeImg;
     this.markers[index].open = true;
   }
 
   clickedMarker(index: number, id) {
     if (this.markers[index].open === false) {
       console.log(`clicked the marker: ${index}`);
-      this.markers[index].url = 'http://team-scale.com/TestData/ng_text_v15/orange_marker.png';
+      this.markers[index].url = this.markerOrangeImg;
       this.openedWindow = id;
       this.markers[index].open = true;
       const searchProperty = cloneDeep(this.allMeetings.filter((list) => {
@@ -54,7 +57,7 @@ export class AppComponent implements OnInit {
       }));
       this.allMeetings = searchProperty;
     } else {
-      this.markers[index].url = 'http://team-scale.com/TestData/ng_text_v15/blue_marker.png';
+      this.markers[index].url = this.markerblueImg;
       this.openedWindow = id;
       this.markers[index].open = false;
       this.allMeetings = cloneDeep(this.allMeetingsClone);
@@ -70,7 +73,7 @@ export class AppComponent implements OnInit {
       this.markers.push({
         lat: element.lat,
         lng: element.lon,
-        url: this.markerImg,
+        url: this.markerblueImg,
         name: element.name,
         id: element.id,
         open: false
